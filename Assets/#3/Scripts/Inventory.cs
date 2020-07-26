@@ -4,10 +4,20 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    [SerializeField] List<sItem> items;
+    // Module Items
+    [Header("MODUELS:")]
+
+    [SerializeField] List<sItem> moduleItems;
     [SerializeField] Transform moduleItemsParent;
     [SerializeField] ItemSlot[] moduleItemSlots;
 
+
+    [Header("WEAPONS:")]
+    [Space]
+    [Space]
+
+    // Weapon Items
+    [SerializeField] List<sItem> weaponItems;
     [SerializeField] Transform weaponsItemsParent;
     [SerializeField] ItemSlot[] weaponsItemSlots;
 
@@ -32,9 +42,9 @@ public class Inventory : MonoBehaviour
         // refresh module UI
         int i = 0;
 
-        for (; i < items.Count && i < moduleItemSlots.Length; i++)
+        for (; i < moduleItems.Count && i < moduleItemSlots.Length; i++)
         {
-            moduleItemSlots[i].item = items[i];
+            moduleItemSlots[i].item = moduleItems[i];
         }
 
         for (; i < moduleItemSlots.Length; i++)
@@ -45,15 +55,42 @@ public class Inventory : MonoBehaviour
         // refresh weapons UI
         int y = 0;
 
-        for (; y < items.Count && y < weaponsItemSlots.Length; y++)
+        for (; y < weaponItems.Count && y < weaponsItemSlots.Length; y++)
         {
-            weaponsItemSlots[y].item = items[y];
+            weaponsItemSlots[y].item = weaponItems[y];
         }
 
         for (; y < weaponsItemSlots.Length; y++)
         {
             weaponsItemSlots[y].item = null;
         }
+    }
 
+    public bool AddItem(sItem _item)
+    {
+        if (IsFull())
+        {
+            return false;
+        }
+
+        moduleItems.Add(_item);
+        RefreshUI();
+        return true;
+    }
+
+    public bool RemoveItem(sItem _item)
+    {
+        if (moduleItems.Remove(_item))
+        {
+            RefreshUI();
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool IsFull()
+    {
+        return moduleItems.Count >= moduleItemSlots.Length;
     }
 }

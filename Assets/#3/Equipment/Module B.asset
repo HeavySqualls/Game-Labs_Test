@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72d4d6c93f4721a4da8c3e23127f9537, type: 3}
+  m_Name: Module B
+  m_EditorClassIdentifier: 
+  itemName: Module B
+  itemSprite: {fileID: 21300000, guid: bad689d3d0991534e956066e167166ff, type: 3}
+  equipmentType: 0
+  damage: 0
+  reloadTime: 0
+  HPBoost: 50
+  ShieldBoost: 0
+  ShieldRegenBonus: 0
+  WeaponReloadBonus: 0

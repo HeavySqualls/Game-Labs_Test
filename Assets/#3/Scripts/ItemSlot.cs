@@ -21,7 +21,7 @@ public class ItemSlot : MonoBehaviour
             }
             else
             {
-                itemImage.sprite = _item.weaponSprite;
+                itemImage.sprite = _item.itemSprite;
                 itemImage.enabled = true;
             }
         }
