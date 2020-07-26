@@ -1,5 +1,4 @@
 ﻿
-
 public class EquipmentSlot : ItemSlot
 {
     public EquipmentType equipmentType;

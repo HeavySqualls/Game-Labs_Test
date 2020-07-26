@@ -11,6 +11,9 @@ public class InventoryManager : MonoBehaviour
     {
         inventory.OnModuleItemRightClickEvent += EquipFromInventory;
         inventory.OnWeaponItemRightClickEvent += EquipFromInventory;
+
+        equipmentPanel.OnModuleItemRightClickEvent += UnequipFromEquipPanel;
+        equipmentPanel.OnWeaponItemRightClickEvent += UnequipFromEquipPanel;
     }
 
     private void EquipFromInventory(sItem _item)
@@ -18,6 +21,14 @@ public class InventoryManager : MonoBehaviour
         if (_item is sEquipment)
         {
             Equip((sEquipment)_item);
+        }
+    }
+
+    private void UnequipFromEquipPanel(sItem _item)
+    {
+        if (_item is sEquipment)
+        {
+            UnEquip((sEquipment)_item);
         }
     }
 
@@ -58,9 +69,10 @@ public class InventoryManager : MonoBehaviour
 
     public void UnEquip(sEquipment _item)
     {
-        if (!inventory.IsFull() && equipmentPanel.RemoveItem(_item))
-        {
-            inventory.AddItem(_item);
-        }
+        equipmentPanel.RemoveItem(_item);
+        //if (!inventory.IsFull() && equipmentPanel.RemoveItem(_item))
+        //{
+        //    inventory.AddItem(_item);
+        //}
     }
 }
