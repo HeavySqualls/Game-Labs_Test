@@ -19,5 +19,5 @@ MonoBehaviour:
   reloadTime: 0
   HPBoost: 0
   ShieldBoost: 0
-  ShieldRegenBonus: 0.2
+  ShieldRegenBonus: -0.2
   WeaponReloadBonus: 0

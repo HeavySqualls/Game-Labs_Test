@@ -1,14 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using Kryz.CharacterStats;
 
-public class InventoryManager : MonoBehaviour
+public class ShipInventoryManager : MonoBehaviour
 {
+    public CharacterStat HP;
+    public CharacterStat Shield;
+    public CharacterStat ShieldRegen;
+    public CharacterStat GunA_Damage;
+    public CharacterStat GunA_Reload;
+    public CharacterStat GunB_Damage;
+    public CharacterStat GunB_Reload;
+
     [SerializeField] Inventory inventory;
     [SerializeField] EquipmentPanel equipmentPanel;
+    [SerializeField] StatPanel statPanel;
 
     private void Awake()
     {
+        statPanel.SetStats(HP, Shield, ShieldRegen, GunA_Damage, GunA_Reload, GunB_Damage, GunB_Reload);
+        statPanel.UpdateStatValues();
+
         inventory.OnModuleItemRightClickEvent += EquipFromInventory;
         inventory.OnWeaponItemRightClickEvent += EquipFromInventory;
 
@@ -41,7 +52,11 @@ public class InventoryManager : MonoBehaviour
             {
                 //TODO: potentially just destroy the item here instead
                 inventory.AddItem(previousItem);
+                previousItem.Unequip(this);
+                statPanel.UpdateStatValues();
             }
+            _item.Equip(this);
+            statPanel.UpdateStatValues();
         }
         else
         {
@@ -70,6 +85,8 @@ public class InventoryManager : MonoBehaviour
     public void UnEquip(sEquipment _item)
     {
         equipmentPanel.RemoveItem(_item);
+        _item.Unequip(this);
+        statPanel.UpdateStatValues();
         //if (!inventory.IsFull() && equipmentPanel.RemoveItem(_item))
         //{
         //    inventory.AddItem(_item);
