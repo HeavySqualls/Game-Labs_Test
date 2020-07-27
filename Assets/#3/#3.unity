@@ -5307,7 +5307,7 @@ RectTransform:
   m_GameObject: {fileID: 1957534266}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 1070012868}
   - {fileID: 552909081}
@@ -5375,6 +5375,8 @@ MonoBehaviour:
     BaseValue: 80
   ShieldRegen:
     BaseValue: 1
+  ReloadSpeed:
+    BaseValue: 0
   GunA_Damage:
     BaseValue: 0
   GunA_Reload:
@@ -5383,8 +5385,8 @@ MonoBehaviour:
     BaseValue: 0
   GunB_Reload:
     BaseValue: 0
-  inventory: {fileID: 1809082868}
   equipmentPanel: {fileID: 141656764}
+  inventory: {fileID: 1809082868}
   statPanel: {fileID: 552909082}
 --- !u!1 &1964701539
 GameObject:

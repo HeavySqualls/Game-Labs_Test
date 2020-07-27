@@ -12,7 +12,7 @@ public class EquipmentPanel : MonoBehaviour
     [Space]
     [Space]
     [SerializeField] Transform weaponEquipmentSlotsParent;
-    [SerializeField] EquipmentSlot[] weaponEquipmentSlots;
+    public EquipmentSlot[] weaponEquipmentSlots;
 
     public event Action<sItem> OnModuleItemRightClickEvent;
     public event Action<sItem> OnWeaponItemRightClickEvent;
@@ -51,7 +51,8 @@ public class EquipmentPanel : MonoBehaviour
                 }
                 else if (moduleEquipmentSlots[i].equipmentType == _item.equipmentType && moduleEquipmentSlots[i].item != null)
                 {
-                    previousItem = (sEquipment)moduleEquipmentSlots[i++].item; previousItem = null;
+                    previousItem = (sEquipment)moduleEquipmentSlots[i++].item; 
+                    //previousItem = null;
                     moduleEquipmentSlots[i++].item = _item;
                     return true;
                 }
@@ -71,7 +72,8 @@ public class EquipmentPanel : MonoBehaviour
                 }
                 else if (weaponEquipmentSlots[i].equipmentType == _item.equipmentType && weaponEquipmentSlots[i].item != null)
                 {
-                    previousItem = (sEquipment)weaponEquipmentSlots[i++].item; previousItem = null;
+                    previousItem = (sEquipment)weaponEquipmentSlots[i++].item; 
+                    //previousItem = null;
                     weaponEquipmentSlots[i++].item = _item;
                     return true;
                 }

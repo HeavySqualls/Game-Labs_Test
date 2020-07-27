@@ -38,7 +38,25 @@ public class sEquipment : sItem
             s.ShieldRegen.AddModifier(new StatModifier(ShieldRegenBonus, StatModType.PercentMult, this));
 
         if (WeaponReloadBonus != 0)
+        {
             s.GunA_Reload.AddModifier(new StatModifier(WeaponReloadBonus, StatModType.PercentMult, this));
+            s.GunB_Reload.AddModifier(new StatModifier(WeaponReloadBonus, StatModType.PercentMult, this));
+        }
+
+
+        if (damage != 0)
+        {
+            if (s.equipmentPanel.weaponEquipmentSlots[0].item == this)
+            {
+                s.GunA_Damage.AddModifier(new StatModifier(damage, StatModType.Flat, this));
+                s.GunA_Reload.AddModifier(new StatModifier(reloadTime, StatModType.Flat, this));
+            }
+            else if (s.equipmentPanel.weaponEquipmentSlots[1].item == this)
+            {
+                s.GunB_Damage.AddModifier(new StatModifier(damage, StatModType.Flat, this));
+                s.GunB_Reload.AddModifier(new StatModifier(reloadTime, StatModType.Flat, this));
+            }
+        }
     }
 
     public void Unequip(ShipInventoryManager s)
@@ -47,5 +65,8 @@ public class sEquipment : sItem
         s.Shield.RemoveAllModifiersFromSource(this);
         s.ShieldRegen.RemoveAllModifiersFromSource(this);
         s.GunA_Reload.RemoveAllModifiersFromSource(this);
+        s.GunB_Reload.RemoveAllModifiersFromSource(this);
+        s.GunA_Damage.RemoveAllModifiersFromSource(this);
+        s.GunB_Damage.RemoveAllModifiersFromSource(this);
     }
 }

@@ -6,13 +6,16 @@ public class ShipInventoryManager : MonoBehaviour
     public CharacterStat HP;
     public CharacterStat Shield;
     public CharacterStat ShieldRegen;
+    public CharacterStat ReloadSpeed;
+
     public CharacterStat GunA_Damage;
     public CharacterStat GunA_Reload;
+
     public CharacterStat GunB_Damage;
     public CharacterStat GunB_Reload;
 
+    public EquipmentPanel equipmentPanel;
     [SerializeField] Inventory inventory;
-    [SerializeField] EquipmentPanel equipmentPanel;
     [SerializeField] StatPanel statPanel;
 
     private void Awake()
@@ -29,6 +32,8 @@ public class ShipInventoryManager : MonoBehaviour
 
     private void EquipFromInventory(sItem _item)
     {
+        Debug.Log("Equipped " + _item.name);
+
         if (_item is sEquipment)
         {
             Equip((sEquipment)_item);
@@ -37,6 +42,7 @@ public class ShipInventoryManager : MonoBehaviour
 
     private void UnequipFromEquipPanel(sItem _item)
     {
+        Debug.Log("Unequipped " + _item.name);
         if (_item is sEquipment)
         {
             UnEquip((sEquipment)_item);
@@ -53,7 +59,9 @@ public class ShipInventoryManager : MonoBehaviour
                 //TODO: potentially just destroy the item here instead
                 inventory.AddItem(previousItem);
                 previousItem.Unequip(this);
+
                 statPanel.UpdateStatValues();
+
             }
             _item.Equip(this);
             statPanel.UpdateStatValues();
@@ -62,24 +70,6 @@ public class ShipInventoryManager : MonoBehaviour
         {
             inventory.AddItem(_item);
         }
-
-        // TOOK OUT AS WE DONT WANT TO REMOVE ITEMS FROM THE INVENTORY PANEL
-        //if (inventory.RemoveItem(_item))
-        //{
-        //    sEquipment previousItem;
-        //    if (equipmentPanel.AddItem(_item, out previousItem))
-        //    {
-        //        if (previousItem != null)
-        //        {
-        //            //TODO: potentially just destroy the item here instead
-        //            inventory.AddItem(previousItem);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        inventory.AddItem(_item);
-        //    }
-        //}
     }
 
     public void UnEquip(sEquipment _item)
@@ -87,9 +77,5 @@ public class ShipInventoryManager : MonoBehaviour
         equipmentPanel.RemoveItem(_item);
         _item.Unequip(this);
         statPanel.UpdateStatValues();
-        //if (!inventory.IsFull() && equipmentPanel.RemoveItem(_item))
-        //{
-        //    inventory.AddItem(_item);
-        //}
     }
 }
