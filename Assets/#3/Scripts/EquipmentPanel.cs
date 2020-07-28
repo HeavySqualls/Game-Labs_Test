@@ -17,7 +17,7 @@ public class EquipmentPanel : MonoBehaviour
     public event Action<sItem> OnModuleItemRightClickEvent;
     public event Action<sItem> OnWeaponItemRightClickEvent;
 
-    private void Awake()
+    private void Start()
     {
         for (int i = 0; i < moduleEquipmentSlots.Length; i++)
         {
@@ -45,15 +45,8 @@ public class EquipmentPanel : MonoBehaviour
             {
                 if (moduleEquipmentSlots[i].equipmentType == _item.equipmentType && moduleEquipmentSlots[i].item == null)
                 {
-                    previousItem = null;
+                    previousItem = (sEquipment)moduleEquipmentSlots[i].item;
                     moduleEquipmentSlots[i].item = _item;
-                    return true;
-                }
-                else if (moduleEquipmentSlots[i].equipmentType == _item.equipmentType && moduleEquipmentSlots[i].item != null)
-                {
-                    previousItem = (sEquipment)moduleEquipmentSlots[i++].item; 
-                    //previousItem = null;
-                    moduleEquipmentSlots[i++].item = _item;
                     return true;
                 }
             }
@@ -66,15 +59,8 @@ public class EquipmentPanel : MonoBehaviour
             {
                 if (weaponEquipmentSlots[i].equipmentType == _item.equipmentType && weaponEquipmentSlots[i].item == null)
                 {
-                    previousItem = null;
+                    previousItem = (sEquipment)weaponEquipmentSlots[i].item;
                     weaponEquipmentSlots[i].item = _item;
-                    return true;
-                }
-                else if (weaponEquipmentSlots[i].equipmentType == _item.equipmentType && weaponEquipmentSlots[i].item != null)
-                {
-                    previousItem = (sEquipment)weaponEquipmentSlots[i++].item; 
-                    //previousItem = null;
-                    weaponEquipmentSlots[i++].item = _item;
                     return true;
                 }
             }

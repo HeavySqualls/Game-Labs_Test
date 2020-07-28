@@ -23,6 +23,7 @@ public class ShipInventoryManager : MonoBehaviour
         statPanel.SetStats(HP, Shield, ShieldRegen, GunA_Damage, GunA_Reload, GunB_Damage, GunB_Reload);
         statPanel.UpdateStatValues();
 
+
         inventory.OnModuleItemRightClickEvent += EquipFromInventory;
         inventory.OnWeaponItemRightClickEvent += EquipFromInventory;
 
@@ -61,7 +62,6 @@ public class ShipInventoryManager : MonoBehaviour
                 previousItem.Unequip(this);
 
                 statPanel.UpdateStatValues();
-
             }
             _item.Equip(this);
             statPanel.UpdateStatValues();

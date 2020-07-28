@@ -24,7 +24,7 @@ public class Inventory : MonoBehaviour
     public event Action<sItem> OnModuleItemRightClickEvent;
     public event Action<sItem> OnWeaponItemRightClickEvent;
 
-    private void Awake()
+    private void Start()
     {
         for (int i = 0; i < moduleItemSlots.Length; i++)
         {
@@ -35,6 +35,8 @@ public class Inventory : MonoBehaviour
         {
             weaponsItemSlots[i].OnRightClickEvent += OnWeaponItemRightClickEvent;
         }
+
+        RefreshUI();
     }
 
     private void OnValidate()
