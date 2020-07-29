@@ -46,13 +46,6 @@ public class sEquipment : sItem
 
         if (damage != 0)
         {
-
-            //s.GunA_Damage.AddModifier(new StatModifier(damage, StatModType.Flat, this));
-            //s.GunA_Reload.AddModifier(new StatModifier(reloadTime, StatModType.Flat, this));
-
-            //s.GunB_Damage.AddModifier(new StatModifier(damage, StatModType.Flat, this));
-            //s.GunB_Reload.AddModifier(new StatModifier(reloadTime, StatModType.Flat, this));
-
             if (s.equipmentPanel.weaponEquipmentSlots[0].item == this)
             {
                 s.GunA_Damage.AddModifier(new StatModifier(damage, StatModType.Flat, this));

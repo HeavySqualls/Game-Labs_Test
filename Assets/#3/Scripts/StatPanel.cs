@@ -40,6 +40,7 @@ public class StatPanel : MonoBehaviour
         for (int i = 0; i < stats.Length; i++)
         {
             statDisplays[i].UpdateStatValue();
+            //Debug.Log("Updated " + statDisplays[i].name + " stats");
         }
     }
 

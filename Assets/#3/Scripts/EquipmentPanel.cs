@@ -14,19 +14,39 @@ public class EquipmentPanel : MonoBehaviour
     [SerializeField] Transform weaponEquipmentSlotsParent;
     public EquipmentSlot[] weaponEquipmentSlots;
 
-    public event Action<sItem> OnModuleItemRightClickEvent;
-    public event Action<sItem> OnWeaponItemRightClickEvent;
+    public event Action<ItemSlot> OnPointerEnterEvent;
+    public event Action<ItemSlot> OnPointerExitEvent;
+
+    public event Action<ItemSlot> OnModuleItemRightClickEvent;
+    public event Action<ItemSlot> OnWeaponItemRightClickEvent;
+
+    public event Action<ItemSlot> OnBeginDragEvent;
+    public event Action<ItemSlot> OnEndDragEvent;
+    public event Action<ItemSlot> OnDragEvent;
+    public event Action<ItemSlot> OnDropEvent;
 
     private void Start()
     {
         for (int i = 0; i < moduleEquipmentSlots.Length; i++)
         {
+            moduleEquipmentSlots[i].OnPointerEnterEvent += OnPointerEnterEvent;
+            moduleEquipmentSlots[i].OnPointerExitEvent += OnPointerExitEvent;
             moduleEquipmentSlots[i].OnRightClickEvent += OnModuleItemRightClickEvent;
+            moduleEquipmentSlots[i].OnBeginDragEvent += OnBeginDragEvent;
+            moduleEquipmentSlots[i].OnEndDragEvent += OnEndDragEvent;
+            moduleEquipmentSlots[i].OnDragEvent += OnDragEvent;
+            moduleEquipmentSlots[i].OnDropEvent += OnDropEvent;
         }
 
         for (int i = 0; i < weaponEquipmentSlots.Length; i++)
         {
+            weaponEquipmentSlots[i].OnPointerEnterEvent += OnPointerEnterEvent;
+            weaponEquipmentSlots[i].OnPointerExitEvent += OnPointerExitEvent;
             weaponEquipmentSlots[i].OnRightClickEvent += OnWeaponItemRightClickEvent;
+            weaponEquipmentSlots[i].OnBeginDragEvent += OnBeginDragEvent;
+            weaponEquipmentSlots[i].OnEndDragEvent += OnEndDragEvent;
+            weaponEquipmentSlots[i].OnDragEvent += OnDragEvent;
+            weaponEquipmentSlots[i].OnDropEvent += OnDropEvent;
         }
     }
 

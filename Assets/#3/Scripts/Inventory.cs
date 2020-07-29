@@ -6,8 +6,7 @@ public class Inventory : MonoBehaviour
 {
     // Module Items
     [Header("MODUELS:")]
-
-    [SerializeField] List<sItem> moduleItems;
+    [SerializeField] List<sItem> startingModuleItems;
     [SerializeField] Transform moduleItemsParent;
     [SerializeField] ItemSlot[] moduleItemSlots;
 
@@ -17,26 +16,47 @@ public class Inventory : MonoBehaviour
     [Space]
 
     // Weapon Items
-    [SerializeField] List<sItem> weaponItems;
+    [SerializeField] List<sItem> startingWeaponItems;
     [SerializeField] Transform weaponsItemsParent;
     [SerializeField] ItemSlot[] weaponsItemSlots;
 
-    public event Action<sItem> OnModuleItemRightClickEvent;
-    public event Action<sItem> OnWeaponItemRightClickEvent;
+    public event Action<ItemSlot> OnPointerEnterEvent;
+    public event Action<ItemSlot> OnPointerExitEvent;
+
+    public event Action<ItemSlot> OnModuleItemRightClickEvent;
+    public event Action<ItemSlot> OnWeaponItemRightClickEvent;
+    //public event Action<ItemSlot> OnRightClickEvent;
+
+    public event Action<ItemSlot> OnBeginDragEvent;
+    public event Action<ItemSlot> OnEndDragEvent;
+    public event Action<ItemSlot> OnDragEvent;
+    public event Action<ItemSlot> OnDropEvent;
 
     private void Start()
     {
         for (int i = 0; i < moduleItemSlots.Length; i++)
         {
+            moduleItemSlots[i].OnPointerEnterEvent += OnPointerEnterEvent;
+            moduleItemSlots[i].OnPointerExitEvent += OnPointerExitEvent;
             moduleItemSlots[i].OnRightClickEvent += OnModuleItemRightClickEvent;
+            moduleItemSlots[i].OnBeginDragEvent += OnBeginDragEvent;
+            moduleItemSlots[i].OnEndDragEvent += OnEndDragEvent;
+            moduleItemSlots[i].OnDragEvent += OnDragEvent;
+            moduleItemSlots[i].OnDropEvent += OnDropEvent;
         }
 
         for (int i = 0; i < weaponsItemSlots.Length; i++)
         {
+            weaponsItemSlots[i].OnPointerEnterEvent += OnPointerEnterEvent;
+            weaponsItemSlots[i].OnPointerExitEvent += OnPointerExitEvent;
             weaponsItemSlots[i].OnRightClickEvent += OnWeaponItemRightClickEvent;
+            weaponsItemSlots[i].OnBeginDragEvent += OnBeginDragEvent;
+            weaponsItemSlots[i].OnEndDragEvent += OnEndDragEvent;
+            weaponsItemSlots[i].OnDragEvent += OnDragEvent;
+            weaponsItemSlots[i].OnDropEvent += OnDropEvent;
         }
 
-        RefreshUI();
+        SetStartingItems();
     }
 
     private void OnValidate()
@@ -51,18 +71,18 @@ public class Inventory : MonoBehaviour
             weaponsItemSlots = weaponsItemsParent.GetComponentsInChildren<ItemSlot>();
         }
 
-        RefreshUI();
+        SetStartingItems();
     }
 
     // refresh equipment list UI every time there is a change to it
-    private void RefreshUI()
+    private void SetStartingItems()
     {
         // refresh module UI
         int i = 0;
 
-        for (; i < moduleItems.Count && i < moduleItemSlots.Length; i++)
+        for (; i < startingModuleItems.Count && i < moduleItemSlots.Length; i++)
         {
-            moduleItemSlots[i].item = moduleItems[i];
+            moduleItemSlots[i].item = Instantiate(startingModuleItems[i]);
         }
 
         for (; i < moduleItemSlots.Length; i++)
@@ -73,9 +93,9 @@ public class Inventory : MonoBehaviour
         // refresh weapons UI
         int y = 0;
 
-        for (; y < weaponItems.Count && y < weaponsItemSlots.Length; y++)
+        for (; y < startingWeaponItems.Count && y < weaponsItemSlots.Length; y++)
         {
-            weaponsItemSlots[y].item = weaponItems[y];
+            weaponsItemSlots[y].item = Instantiate(startingWeaponItems[y]);
         }
 
         for (; y < weaponsItemSlots.Length; y++)
@@ -86,29 +106,39 @@ public class Inventory : MonoBehaviour
 
     public bool AddItem(sItem _item)
     {
-        if (IsFull())
+        for (int i = 0; i < moduleItemSlots.Length; i++)
         {
-            return false;
+            if (moduleItemSlots[i].item == null)
+            {
+                moduleItemSlots[i].item = _item;
+                return true;
+            }
         }
-
-        moduleItems.Add(_item);
-        RefreshUI();
-        return true;
+        return false;
     }
 
     public bool RemoveItem(sItem _item)
     {
-        if (moduleItems.Remove(_item))
+        for (int i = 0; i < moduleItemSlots.Length; i++)
         {
-            RefreshUI();
-            return true;
+            if (moduleItemSlots[i].item == _item)
+            {
+                moduleItemSlots[i].item = null;
+                return true;
+            }
         }
-
         return false;
     }
 
     public bool IsFull()
     {
-        return moduleItems.Count >= moduleItemSlots.Length;
+        for (int i = 0; i < moduleItemSlots.Length; i++)
+        {
+            if (moduleItemSlots[i].item == null)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }
