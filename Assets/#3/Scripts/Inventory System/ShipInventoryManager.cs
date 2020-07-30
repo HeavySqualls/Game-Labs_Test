@@ -159,8 +159,8 @@ public class ShipInventoryManager : MonoBehaviour
             if (previousItem != null)
             {
                 //TODO: potentially just destroy the item here instead
-                inventory.AddItem(previousItem);
-                previousItem.Unequip(this);
+                //inventory.AddItem(previousItem);
+                //previousItem.Unequip(this);
 
                 statPanel.UpdateStatValues();
             }

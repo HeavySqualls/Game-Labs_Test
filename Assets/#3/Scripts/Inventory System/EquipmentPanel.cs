@@ -56,6 +56,9 @@ public class EquipmentPanel : MonoBehaviour
         weaponEquipmentSlots = weaponEquipmentSlotsParent.GetComponentsInChildren<EquipmentSlot>();
     }
 
+    public int currentModuleSlot;
+    public int currentWeaponEquipSlot;
+
     public bool AddItem(sEquipment _item, out sEquipment previousItem)
     {
         // MODULE SLOTS
@@ -65,6 +68,7 @@ public class EquipmentPanel : MonoBehaviour
             {
                 if (moduleEquipmentSlots[i].equipmentType == _item.equipmentType && moduleEquipmentSlots[i].item == null)
                 {
+                    currentModuleSlot = i;
                     previousItem = (sEquipment)moduleEquipmentSlots[i].item;
                     moduleEquipmentSlots[i].item = _item;
                     return true;
@@ -75,12 +79,14 @@ public class EquipmentPanel : MonoBehaviour
         // WEAPON SLOTS 
         else if (_item.equipmentType == EquipmentType.Weapon)
         {
-            for (int i = 0; i < weaponEquipmentSlots.Length; i++)
+            for (int y = 0; y < weaponEquipmentSlots.Length; y++)
             {
-                if (weaponEquipmentSlots[i].equipmentType == _item.equipmentType && weaponEquipmentSlots[i].item == null)
+                if (weaponEquipmentSlots[y].equipmentType == _item.equipmentType && weaponEquipmentSlots[y].item == null)
                 {
-                    previousItem = (sEquipment)weaponEquipmentSlots[i].item;
-                    weaponEquipmentSlots[i].item = _item;
+                    Debug.Log("Equipped ");
+                    currentWeaponEquipSlot = y;
+                    previousItem = (sEquipment)weaponEquipmentSlots[y].item;
+                    weaponEquipmentSlots[y].item = _item;
                     return true;
                 }
             }
@@ -99,6 +105,7 @@ public class EquipmentPanel : MonoBehaviour
             {
                 if (moduleEquipmentSlots[i].item == _item)
                 {
+                    currentModuleSlot = i;
                     moduleEquipmentSlots[i].item = null;
                     return true;
                 }
@@ -108,11 +115,12 @@ public class EquipmentPanel : MonoBehaviour
         // WEAPON SLOTS
         else if (_item.equipmentType == EquipmentType.Weapon)
         {
-            for (int i = 0; i < weaponEquipmentSlots.Length; i++)
+            for (int y = 0; y < weaponEquipmentSlots.Length; y++)
             {
-                if (weaponEquipmentSlots[i].item == _item)
+                if (weaponEquipmentSlots[y].item == _item)
                 {
-                    weaponEquipmentSlots[i].item = null;
+                    currentWeaponEquipSlot = y;
+                    weaponEquipmentSlots[y].item = null;
                     return true;
                 }
             }
