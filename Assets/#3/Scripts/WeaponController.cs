@@ -11,15 +11,29 @@ public class WeaponController : MonoBehaviour
     [SerializeField] StatsDisplay weaponReload;
 
     private GameObject target;
+    [SerializeField] ShipController shipCon;
+
+    private void Start()
+    {
+        shipCon = GetComponentInParent<ShipController>();
+    }
 
     public void SetTargetAndAttack(GameObject _target)
     {
-        target = _target;
-        ReloadWeapon();
+        //Check to see if there is a weapon equipped before begining firing process
+        if (weaponDamage.Stat.Value > 0)
+        {
+            target = _target;
+
+            Debug.Log(shipCon.name + "'s " + gameObject.name + " targeting " + _target.name);
+
+            ReloadWeapon();
+        }
     }
 
     private void ReloadWeapon()
     {
+        Debug.Log(shipCon.name + "'s " + gameObject.name + " reloading...");
         StartCoroutine(RunReloadTime());
     }
 
@@ -32,9 +46,9 @@ public class WeaponController : MonoBehaviour
 
     private void FireWeapon()
     {
-        // Fire projectile at target
-        Debug.Log("Ship " + gameObject.name + " shooting");
-
+        // Instantiate projectile prefab 
+        Debug.Log(shipCon.name + "'s " + gameObject.name + " fired.");
+       
         // Reload Weapon
         ReloadWeapon();
     }
