@@ -10,12 +10,17 @@ public class WeaponController : MonoBehaviour
     [SerializeField] StatsDisplay weaponDamage;
     [SerializeField] StatsDisplay weaponReload;
 
+    [SerializeField] float thrust;
+    [SerializeField] GameObject projectilePrefab;
+
+    private Transform gunPos;
     private GameObject target;
     [SerializeField] ShipController shipCon;
 
     private void Start()
     {
         shipCon = GetComponentInParent<ShipController>();
+        gunPos = this.transform;
     }
 
     public void SetTargetAndAttack(GameObject _target)
@@ -47,6 +52,11 @@ public class WeaponController : MonoBehaviour
     private void FireWeapon()
     {
         // Instantiate projectile prefab 
+        GameObject projectile = Instantiate(projectilePrefab, gunPos.position, transform.rotation);
+        projectile.GetComponent<Projectile>().AddProjectileValues(weaponDamage.Stat.Value);
+        projectile.transform.LookAt(target.transform);
+        projectile.GetComponent<Rigidbody>().AddForce(projectile.transform.forward * thrust, ForceMode.Impulse);
+
         Debug.Log(shipCon.name + "'s " + gameObject.name + " fired.");
        
         // Reload Weapon
