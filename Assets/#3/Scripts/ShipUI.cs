@@ -26,17 +26,18 @@ public class ShipUI : MonoBehaviour
     private void Start()
     {
         shipCon = GetComponentInParent<ShipController>();
-        SetShieldTimerFill();
+        ReloadTimerFill(shieldTimerFill);
         shieldTimer.SetActive(false);
     }
 
     // -------- RADIAL TIMERS -------- //
 
-    public void SetShieldTimerFill()
+    public void ReloadTimerFill(Image fillImage)
     {
-        shieldTimerFill.fillAmount = 1f;
+        fillImage.fillAmount = 1f;
     }
 
+        // Shield
     public IEnumerator ShieldTimer(float duration, ShieldController shieldCon)
     {
         print("hey");
@@ -60,9 +61,28 @@ public class ShipUI : MonoBehaviour
         shieldCon.shield.SetActive(true);
     }
 
+        // Weapons
+    public IEnumerator WeaponReloadTimer(Image reloadDial, float duration, WeaponController wCon)
+    {
+        float startTime = Time.time;
+        float time = duration;
+        float value = 0;
+
+        while (Time.time - startTime < duration)
+        {
+            time -= Time.deltaTime;
+            value = time / duration;
+            reloadDial.fillAmount = value;
+            yield return null;
+        }
+
+        wCon.FireWeapon();
+    }
+
 
     // -------- HEALTH AND SHIELD BARS -------- //
 
+        // Heath
     public void SetMaxHealthValue(float health)
     {
         healthbar.maxValue = health;
@@ -70,17 +90,18 @@ public class ShipUI : MonoBehaviour
         healthFill.color = healthGradient.Evaluate(1f);
     }
 
+    public void SetHealthBar(float health)
+    {
+        healthbar.value = health;
+        healthFill.color = healthGradient.Evaluate(healthbar.normalizedValue);
+    }
+
+        // Shield
     public void SetMaxShieldValue(float shield)
     {
         shieldBar.maxValue = shield;
         shieldBar.value = shield;
         shieldBarFill.color = shieldGradient.Evaluate(1f);
-    }
-
-    public void SetHealthBar(float health)
-    {
-        healthbar.value = health;
-        healthFill.color = healthGradient.Evaluate(healthbar.normalizedValue);
     }
 
     public void SetShieldBar(float shield)

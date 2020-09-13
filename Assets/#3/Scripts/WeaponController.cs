@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WeaponController : MonoBehaviour
 {
-    public int weaponID;
+    public Image reloadImage;
 
     [Header("WEAPON STATS:")]
     [SerializeField] StatsDisplay weaponDamage;
@@ -15,7 +16,7 @@ public class WeaponController : MonoBehaviour
 
     private Transform gunPos;
     private GameObject target;
-    [SerializeField] ShipController shipCon;
+    private ShipController shipCon;
 
     private void Start()
     {
@@ -39,17 +40,17 @@ public class WeaponController : MonoBehaviour
     private void ReloadWeapon()
     {
         Debug.Log(shipCon.name + "'s " + gameObject.name + " reloading...");
-        StartCoroutine(RunReloadTime());
+        StartCoroutine(shipCon.shipUI.WeaponReloadTimer(reloadImage, weaponReload.Stat.Value, this)); // goes to ShipUI to run the reloading coroutine 
+        //StartCoroutine(RunReloadTime());
     }
 
     private IEnumerator RunReloadTime()
     {
         yield return new WaitForSeconds(weaponReload.Stat.Value);
-
         FireWeapon();
     }
 
-    private void FireWeapon()
+    public void FireWeapon()
     {
         // Instantiate projectile prefab 
         GameObject projectile = Instantiate(projectilePrefab, gunPos.position, transform.rotation);
