@@ -5,11 +5,14 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float projectileDamage;
+
+    private CapsuleCollider projCollider;
     private MeshRenderer meshRend;
 
     private void Start()
     {
         meshRend = GetComponentInChildren<MeshRenderer>();
+        projCollider = GetComponentInChildren<CapsuleCollider>();
     }
 
     public void AddProjectileValues(float damage)
@@ -31,6 +34,7 @@ public class Projectile : MonoBehaviour
         if (shipWeHit != null)
         {
             // Do damage to the ship
+            shipWeHit.OnBulletHit(other, this);
         }
 
         //GameObject shieldHit = Instantiate(Resources.Load("partSyst_ShieldHit", typeof(GameObject))) as GameObject;
@@ -38,6 +42,7 @@ public class Projectile : MonoBehaviour
         ParticleSystem ps = Instantiate(Resources.Load("partSyst_ShieldHit"), gameObject.transform) as ParticleSystem;
         //Instantiate(Resources.Load("partSyst_ShieldHit"), gameObject.transform);
         meshRend.enabled = false;
+        projCollider.enabled = false;
         Destroy(gameObject, 1);
     }
 }

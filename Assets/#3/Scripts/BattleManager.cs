@@ -1,12 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class BattleManager : MonoBehaviour
 {
+    public bool isBattleOver = false;
+    public TextMeshProUGUI outcomeText;
+
+    ShipController winner;
+    ShipController looser;
+
     [SerializeField] ShipController[] ships;
     [SerializeField] GameObject[] shipInventoryPanels;
     [SerializeField] GameObject shipEquipmentPanel;
+    [SerializeField] GameObject gameCanvas;
 
     public void StartBattle()
     {
@@ -32,5 +41,28 @@ public class BattleManager : MonoBehaviour
                 ships[i].BeginCombat(ships[0].gameObject);
             }
         }
+    }
+
+    public void EndBattle()
+    {
+        isBattleOver = true;
+
+        foreach (ShipController ship in ships)
+        {
+            if (ship.isShipDead)
+            {
+                looser = ship;
+                Debug.Log(ship.name + " has been defeated!");
+            }
+            else
+            {
+                winner = ship;
+                Debug.Log(ship.name + " is victorious!");
+            }
+        }
+
+        outcomeText.text = winner.name + " is victorious!";
+
+        gameCanvas.SetActive(true);
     }
 }

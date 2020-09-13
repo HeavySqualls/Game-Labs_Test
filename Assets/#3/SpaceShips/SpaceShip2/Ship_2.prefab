@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 465066}
   - component: {fileID: 3370578}
   - component: {fileID: 2319444}
+  - component: {fileID: 1878494084}
+  - component: {fileID: 1878494083}
   m_Layer: 9
   m_Name: Model
   m_TagString: Untagged
@@ -81,6 +83,32 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1878494084
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123078}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: b966a51581ce9c84380a9fa6c3b7ca56, type: 3}
+--- !u!114 &1878494083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e751dc6a69f1ca43bae78b085856e22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &178266
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,7 +166,11 @@ MonoBehaviour:
   weapons:
   - {fileID: 1103928288}
   - {fileID: 724896180}
+  isShipDead: 0
+  shipModel: {fileID: 123078}
+  shipHUD: {fileID: 1204313887}
   shipUI: {fileID: 0}
+  battleManager: {fileID: 0}
 --- !u!1 &169844342
 GameObject:
   m_ObjectHideFlags: 0
@@ -719,7 +751,7 @@ MonoBehaviour:
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
-  m_FillClockwise: 1
+  m_FillClockwise: 0
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
@@ -1377,7 +1409,7 @@ MonoBehaviour:
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
-  m_FillClockwise: 1
+  m_FillClockwise: 0
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1

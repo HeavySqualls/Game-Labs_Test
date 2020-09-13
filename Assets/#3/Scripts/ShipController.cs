@@ -17,12 +17,18 @@ public class ShipController : MonoBehaviour
     [SerializeField] ShieldController shield;
     [SerializeField] WeaponController[] weapons;
 
-    [HideInInspector]
-    public ShipUI shipUI;
+    public bool isShipDead = false;
+
+    [SerializeField] GameObject shipModel;
+    [SerializeField] GameObject shipHUD;
+
+    [HideInInspector] public ShipUI shipUI;
+    public BattleManager battleManager;
 
     private void Start()
     {
         shipUI = GetComponentInChildren<ShipUI>();
+        //battleManager = Toolbox.GetInstance().GetBattleManager();
     }
 
     public void BeginCombat(GameObject target)
@@ -37,5 +43,23 @@ public class ShipController : MonoBehaviour
         {
             w.SetTargetAndAttack(target);
         }
+    }
+
+    public void DamageShip(float damage)
+    {
+        currentHP -= damage;
+        shipUI.SetHealthBar(currentHP);
+
+        if (currentHP <= 0.5f)
+        {
+            print("ship destroyed!");
+            battleManager.EndBattle();
+            isShipDead = true;
+            shipModel.SetActive(false);
+            shipHUD.SetActive(false);
+            shipUI.StopAttack();
+        }
+
+        // TODO: Add in shield damage effect here 
     }
 }

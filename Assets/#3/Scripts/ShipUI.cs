@@ -7,6 +7,7 @@ public class ShipUI : MonoBehaviour
 {
     // Get access to the different UI elements in the ships world-space UI and actively track and display
     // ships health, shield and weapon reload times. 
+
     [Header("HEALTH:")]
     public Slider healthbar;
     public Gradient healthGradient;
@@ -30,6 +31,11 @@ public class ShipUI : MonoBehaviour
         shieldTimer.SetActive(false);
     }
 
+    public void StopAttack()
+    {
+        StopAllCoroutines();
+    }
+
     // -------- RADIAL TIMERS -------- //
 
     public void ReloadTimerFill(Image fillImage)
@@ -40,7 +46,6 @@ public class ShipUI : MonoBehaviour
         // Shield
     public IEnumerator ShieldTimer(float duration, ShieldController shieldCon)
     {
-        print("hey");
         shieldTimer.SetActive(true);
 
         float startTime = Time.time;
@@ -55,10 +60,13 @@ public class ShipUI : MonoBehaviour
             yield return null;
         }
 
-        shieldTimer.SetActive(false);
-        SetMaxShieldValue(shipCon.shipShield.Stat.Value);
-        shipCon.currentShield = shipCon.shipShield.Stat.Value;
-        shieldCon.shield.SetActive(true);
+        if (!shipCon.isShipDead)
+        {
+            shieldTimer.SetActive(false);
+            SetMaxShieldValue(shipCon.shipShield.Stat.Value);
+            shipCon.currentShield = shipCon.shipShield.Stat.Value;
+            shieldCon.shield.SetActive(true);
+        }
     }
 
         // Weapons
@@ -76,7 +84,8 @@ public class ShipUI : MonoBehaviour
             yield return null;
         }
 
-        wCon.FireWeapon();
+        if (!shipCon.battleManager.isBattleOver)
+            wCon.FireWeapon();
     }
 
 
