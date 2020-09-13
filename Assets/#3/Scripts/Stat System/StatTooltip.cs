@@ -26,7 +26,6 @@ public class StatTooltip : MonoBehaviour
 
     private string GetStatTopText(CharacterStat stat, string statName)
     {
-        print(statName);
         sb.Length = 0;
         sb.Append(statName);
         sb.Append(" ");

@@ -7,15 +7,32 @@ public class ShipController : MonoBehaviour
     [Space]
     [Header("SHIP STATS:")]
     [SerializeField] StatsDisplay shipHP;
-    [SerializeField] StatsDisplay shipShield;
-    [SerializeField] StatsDisplay shipShieldRegen;
-    [Space]
+    public float currentHP;
+    public StatsDisplay shipShield;
+    public float currentShield;
+    public StatsDisplay shipShieldRegen;
 
-    [SerializeField] WeaponController[] weapons;
+    [Space]
+    [Header("SHIP EQUIPMENT:")]
     [SerializeField] ShieldController shield;
+    [SerializeField] WeaponController[] weapons;
+
+    [HideInInspector]
+    public ShipUI shipUI;
+
+    private void Start()
+    {
+        shipUI = GetComponentInChildren<ShipUI>();
+    }
 
     public void BeginCombat(GameObject target)
     {
+        currentHP = shipHP.Stat.Value;
+        currentShield = shipShield.Stat.Value;
+
+        shipUI.SetMaxHealthValue(currentHP);
+        shipUI.SetMaxShieldValue(currentShield);
+
         foreach (WeaponController w in weapons)
         {
             w.SetTargetAndAttack(target);

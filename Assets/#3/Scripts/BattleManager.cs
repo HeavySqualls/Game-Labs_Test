@@ -5,10 +5,20 @@ using UnityEngine;
 public class BattleManager : MonoBehaviour
 {
     [SerializeField] ShipController[] ships;
+    [SerializeField] GameObject[] shipInventoryPanels;
+    [SerializeField] GameObject shipEquipmentPanel;
 
     public void StartBattle()
     {
         Debug.Log("Starting Battle");
+
+        // Disable the equipment UI panels 
+        foreach (GameObject ui in shipInventoryPanels)
+        {
+            ui.SetActive(false);
+        }
+
+        shipEquipmentPanel.SetActive(false);
 
         // TODO: Add in a check to make sure both ships are ready to go 
         for (int i = 0; i < ships.Length; i++)

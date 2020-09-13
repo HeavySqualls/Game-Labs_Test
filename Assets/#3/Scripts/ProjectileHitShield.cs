@@ -6,7 +6,7 @@ public class ProjectileHitShield : ProjectileInteractable
 {
     public override void OnBulletHit(Collision other, Projectile projectile)
     {
-        gameObject.GetComponentInParent<ShieldController>().DamageShield(projectile.projectileDamage);
         Debug.Log("Shield Hit!");
+        gameObject.GetComponentInParent<ShieldController>().DamageShield(projectile.projectileDamage);
     }
 }
