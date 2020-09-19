@@ -1671,7 +1671,7 @@ GameObject:
   - component: {fileID: 2234246098332291412}
   - component: {fileID: 2783271981703807997}
   - component: {fileID: 1080346479}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1716,7 +1716,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 2
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 735508dbe8499f745a0f0db9844cb2eb, type: 2}

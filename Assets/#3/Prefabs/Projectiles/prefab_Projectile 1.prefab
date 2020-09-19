@@ -63,6 +63,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileDamage: 0
+  shieldPs: {fileID: 2513095562973827586, guid: e1e1a26f76499b64b8e062531fcbf39f,
+    type: 3}
+  shipPs: {fileID: 2513095562973827586, guid: abd3695b4b3d0f74e814185b4cb260b9, type: 3}
 --- !u!96 &5775893579133049748
 TrailRenderer:
   serializedVersion: 2
@@ -79,6 +82,7 @@ TrailRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -216,6 +220,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -240,6 +245,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!136 &6935793724155225657
 CapsuleCollider:
   m_ObjectHideFlags: 0
