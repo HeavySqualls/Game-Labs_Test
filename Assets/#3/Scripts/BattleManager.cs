@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class BattleManager : MonoBehaviour
@@ -16,6 +17,13 @@ public class BattleManager : MonoBehaviour
     [SerializeField] GameObject[] shipInventoryPanels;
     [SerializeField] GameObject shipEquipmentPanel;
     [SerializeField] GameObject gameCanvas;
+
+    private int currentLevelIndex;
+
+    void Start()
+    {
+        currentLevelIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
+    }
 
     public void StartBattle()
     {
@@ -64,5 +72,10 @@ public class BattleManager : MonoBehaviour
         outcomeText.text = winner.name + " is victorious!";
 
         gameCanvas.SetActive(true);
+    }
+
+    public void ResetGame()
+    {
+        SceneManager.LoadScene(currentLevelIndex);
     }
 }

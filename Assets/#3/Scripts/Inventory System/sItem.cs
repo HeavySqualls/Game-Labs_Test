@@ -10,9 +10,9 @@ public class sItem : ScriptableObject
     public string itemName;
     public Sprite itemSprite;
 
-    private void OnValidate()
-    {
-        string path = AssetDatabase.GetAssetPath(this);
-        id = AssetDatabase.AssetPathToGUID(path);
-    }
+    //private void OnValidate()
+    //{
+    //    string path = AssetDatabase.GetAssetPath(this);
+    //    id = AssetDatabase.AssetPathToGUID(path);
+    //}
 }
