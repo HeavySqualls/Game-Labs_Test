@@ -34,8 +34,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Post Processing 1
+  - Post Processing 2
   - Particles
   m_SortingLayers:
   - name: Default
