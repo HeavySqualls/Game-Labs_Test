@@ -62,7 +62,7 @@ public class BattleManager : MonoBehaviour
                 looser = ship;
                 Debug.Log(ship.name + " has been defeated!");
             }
-            else
+            else if(!ship.isShipDead)
             {
                 winner = ship;
                 Debug.Log(ship.name + " is victorious!");

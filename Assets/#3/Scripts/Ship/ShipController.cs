@@ -18,6 +18,7 @@ public class ShipController : MonoBehaviour
     [SerializeField] WeaponController[] weapons;
 
     public bool isShipDead = false;
+    public ParticleSystem deathParticles;
 
     [SerializeField] GameObject shipModel;
     [SerializeField] GameObject shipHUD;
@@ -53,6 +54,7 @@ public class ShipController : MonoBehaviour
         if (currentHP <= 0.5f)
         {
             print("ship destroyed!");
+            Instantiate(deathParticles, gameObject.transform);
             battleManager.EndBattle();
             isShipDead = true;
             shipModel.SetActive(false);

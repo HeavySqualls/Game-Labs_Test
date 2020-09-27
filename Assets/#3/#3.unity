@@ -5639,6 +5639,11 @@ PrefabInstance:
       propertyPath: battleManager
       value: 
       objectReference: {fileID: 265364124}
+    - target: {fileID: 562313188, guid: c8b6a28265cff5e4cb4355af1a24cfba, type: 3}
+      propertyPath: deathParticles
+      value: 
+      objectReference: {fileID: 9167902754206861732, guid: 6145c6d10b2c20947bb32533549fa30a,
+        type: 3}
     - target: {fileID: 724896180, guid: c8b6a28265cff5e4cb4355af1a24cfba, type: 3}
       propertyPath: weaponDamage
       value: 
@@ -8005,6 +8010,11 @@ PrefabInstance:
       propertyPath: battleManager
       value: 
       objectReference: {fileID: 265364124}
+    - target: {fileID: 1201096256, guid: c9816fa979b06ba4e9c222b529370cc2, type: 3}
+      propertyPath: deathParticles
+      value: 
+      objectReference: {fileID: 9167902754206861732, guid: 6145c6d10b2c20947bb32533549fa30a,
+        type: 3}
     - target: {fileID: 1329236734, guid: c9816fa979b06ba4e9c222b529370cc2, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -9484,8 +9494,9 @@ GameObject:
   - component: {fileID: 1248310633}
   - component: {fileID: 1248310635}
   - component: {fileID: 1248310634}
+  - component: {fileID: 1248310636}
   m_Layer: 29
-  m_Name: cam_Main
+  m_Name: cineCam_MAIN
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9640,6 +9651,22 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 1815329492}
+--- !u!114 &1248310636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248310629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9321c740ddb92dd4fb85bce4df2a28b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeDuration: 0.3
+  shakeAmplitude: 1.2
+  shakeFrequency: 2
+  virtualCam: {fileID: 1248310635}
 --- !u!1 &1252160288
 GameObject:
   m_ObjectHideFlags: 0
@@ -14212,6 +14239,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1815329492}
   - component: {fileID: 1815329493}
+  - component: {fileID: 1815329494}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -14245,6 +14273,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1815329494
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1815329491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 0
+  m_FrequencyGain: 1
+  mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &1824752909
 GameObject:
   m_ObjectHideFlags: 0
