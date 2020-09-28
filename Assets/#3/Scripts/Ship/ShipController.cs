@@ -17,6 +17,19 @@ public class ShipController : MonoBehaviour
     [SerializeField] ShieldController shield;
     [SerializeField] WeaponController[] weapons;
 
+    [Space]
+    [Header("CAM SHAKES:")]
+    [SerializeField] CameraShake camShake;
+    [Space]
+    public float hitShakeDuration = 0.3f;
+    public float hitShakeAmplitude = 1.2f;
+    public float hitShakeFrequency = 2.0f;
+    [Space]
+    public float deathShakeDuration = 0.3f;
+    public float deathShakeAmplitude = 1.2f;
+    public float deathShakeFrequency = 2.0f;
+    [Space]
+
     public bool isShipDead = false;
     public ParticleSystem deathParticles;
 
@@ -50,11 +63,13 @@ public class ShipController : MonoBehaviour
     {
         currentHP -= damage;
         shipUI.SetHealthBar(currentHP);
+        camShake.ShakeCamera(hitShakeDuration, hitShakeAmplitude, hitShakeFrequency);
 
         if (currentHP <= 0.5f)
         {
             print("ship destroyed!");
             Instantiate(deathParticles, gameObject.transform);
+            camShake.ShakeCamera(deathShakeDuration, deathShakeAmplitude, deathShakeFrequency);
             battleManager.EndBattle();
             isShipDead = true;
             shipModel.SetActive(false);

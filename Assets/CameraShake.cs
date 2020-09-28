@@ -7,11 +7,12 @@ using UnityEngine.Events;
 public class CameraShake : MonoBehaviour
 {
     // Shake Vars
-    public float shakeDuration = 0.3f;
-    public float shakeAmplitude = 1.2f;
-    public float shakeFrequency = 2.0f;
+    private float shakeDuration = 0.3f;
+    private float shakeAmplitude = 1.2f;
+    private float shakeFrequency = 2.0f;
 
     private float shakeElapsedTime = 0f;
+    private bool shakeCamera = false;
 
     // Cinemachine Shake
     public CinemachineVirtualCamera virtualCam;
@@ -29,9 +30,10 @@ public class CameraShake : MonoBehaviour
     void Update()
     {
         //TODO: replace with personal trigger
-        if (Input.GetKey(KeyCode.E))
+        if (shakeCamera)
         {
             shakeElapsedTime = shakeDuration;
+            shakeCamera = false;
         }
 
         // If camera shake effect is still playing
@@ -51,5 +53,14 @@ public class CameraShake : MonoBehaviour
             shakeElapsedTime = 0f;
         }
 
+    }
+
+    public void ShakeCamera(float duration, float amplitude, float frequency)
+    {
+        shakeDuration = duration;
+        shakeAmplitude = amplitude;
+        shakeFrequency = frequency;
+
+        shakeCamera = true;
     }
 }

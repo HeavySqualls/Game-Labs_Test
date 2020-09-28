@@ -8,6 +8,11 @@ public class ShieldController : MonoBehaviour
 
     public GameObject shield;
 
+    public float shakeDuration = 0.3f;
+    public float shakeAmplitude = 1.2f;
+    public float shakeFrequency = 2.0f;
+    [SerializeField] CameraShake camShake;
+
     [SerializeField] ShipUI shipUI;
     private ShipController shipCon;
 
@@ -20,6 +25,8 @@ public class ShieldController : MonoBehaviour
     {
         shipCon.currentShield -= damage;
         shipCon.shipUI.SetShieldBar(shipCon.currentShield);
+
+        camShake.ShakeCamera(shakeDuration, shakeAmplitude, shakeFrequency);
 
         if (shipCon.currentShield <= 0.5f)
         {
