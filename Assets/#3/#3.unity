@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1
+  m_AmbientIntensity: 3.02
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 860a66ca4259b384f9ec01b687f71c3c, type: 2}
@@ -4540,7 +4540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGlobal: 1
-  priority: -1
+  priority: 0
   blendDistance: 0
   weight: 0.75
   sharedProfile: {fileID: 11400000, guid: b4316544c7c187b48af4efe3358e7545, type: 2}
@@ -5756,6 +5756,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 123078, guid: c8b6a28265cff5e4cb4355af1a24cfba, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 178266, guid: c8b6a28265cff5e4cb4355af1a24cfba, type: 3}
       propertyPath: m_Name
       value: Ship_B
@@ -5808,30 +5812,6 @@ PrefabInstance:
       propertyPath: camShake
       value: 
       objectReference: {fileID: 246413871}
-    - target: {fileID: 283027926, guid: c8b6a28265cff5e4cb4355af1a24cfba, type: 3}
-      propertyPath: shakeDuration
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 283027926, guid: c8b6a28265cff5e4cb4355af1a24cfba, type: 3}
-      propertyPath: shakeAmplitude
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 283027926, guid: c8b6a28265cff5e4cb4355af1a24cfba, type: 3}
-      propertyPath: shakeFrequency
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 307857956, guid: c8b6a28265cff5e4cb4355af1a24cfba, type: 3}
-      propertyPath: amplitudeMAX
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 307857956, guid: c8b6a28265cff5e4cb4355af1a24cfba, type: 3}
-      propertyPath: frequencyMAX
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 307857956, guid: c8b6a28265cff5e4cb4355af1a24cfba, type: 3}
-      propertyPath: frequencyMIN
-      value: 0.4
-      objectReference: {fileID: 0}
     - target: {fileID: 562313188, guid: c8b6a28265cff5e4cb4355af1a24cfba, type: 3}
       propertyPath: shipHP
       value: 
@@ -5845,30 +5825,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1610357439}
     - target: {fileID: 562313188, guid: c8b6a28265cff5e4cb4355af1a24cfba, type: 3}
+      propertyPath: camShake
+      value: 
+      objectReference: {fileID: 246413871}
+    - target: {fileID: 562313188, guid: c8b6a28265cff5e4cb4355af1a24cfba, type: 3}
       propertyPath: battleManager
       value: 
       objectReference: {fileID: 265364124}
     - target: {fileID: 562313188, guid: c8b6a28265cff5e4cb4355af1a24cfba, type: 3}
-      propertyPath: deathParticles
+      propertyPath: shipModel
       value: 
-      objectReference: {fileID: 9167902754206861732, guid: 6145c6d10b2c20947bb32533549fa30a,
-        type: 3}
-    - target: {fileID: 562313188, guid: c8b6a28265cff5e4cb4355af1a24cfba, type: 3}
-      propertyPath: deathShakeDuration
-      value: 0.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 562313188, guid: c8b6a28265cff5e4cb4355af1a24cfba, type: 3}
-      propertyPath: deathShakeAmplitude
-      value: 1.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 562313188, guid: c8b6a28265cff5e4cb4355af1a24cfba, type: 3}
-      propertyPath: deathShakeFrequency
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 562313188, guid: c8b6a28265cff5e4cb4355af1a24cfba, type: 3}
-      propertyPath: camShake
-      value: 
-      objectReference: {fileID: 246413871}
+      objectReference: {fileID: 960588792}
     - target: {fileID: 724896180, guid: c8b6a28265cff5e4cb4355af1a24cfba, type: 3}
       propertyPath: weaponDamage
       value: 
@@ -6376,6 +6343,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 673329160}
   m_CullTransparentMesh: 0
+--- !u!4 &675732233 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 432640, guid: c8b6a28265cff5e4cb4355af1a24cfba,
+    type: 3}
+  m_PrefabInstance: {fileID: 571868354}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &683829462
 GameObject:
   m_ObjectHideFlags: 0
@@ -8226,30 +8199,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1964701543}
     - target: {fileID: 1201096256, guid: c9816fa979b06ba4e9c222b529370cc2, type: 3}
-      propertyPath: battleManager
-      value: 
-      objectReference: {fileID: 265364124}
-    - target: {fileID: 1201096256, guid: c9816fa979b06ba4e9c222b529370cc2, type: 3}
-      propertyPath: deathParticles
-      value: 
-      objectReference: {fileID: 9167902754206861732, guid: 6145c6d10b2c20947bb32533549fa30a,
-        type: 3}
-    - target: {fileID: 1201096256, guid: c9816fa979b06ba4e9c222b529370cc2, type: 3}
-      propertyPath: deathShakeDuration
-      value: 0.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 1201096256, guid: c9816fa979b06ba4e9c222b529370cc2, type: 3}
-      propertyPath: deathShakeAmplitude
-      value: 1.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1201096256, guid: c9816fa979b06ba4e9c222b529370cc2, type: 3}
-      propertyPath: deathShakeFrequency
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1201096256, guid: c9816fa979b06ba4e9c222b529370cc2, type: 3}
       propertyPath: camShake
       value: 
       objectReference: {fileID: 510672769}
+    - target: {fileID: 1201096256, guid: c9816fa979b06ba4e9c222b529370cc2, type: 3}
+      propertyPath: shipModel
+      value: 
+      objectReference: {fileID: 1020125127}
+    - target: {fileID: 1201096256, guid: c9816fa979b06ba4e9c222b529370cc2, type: 3}
+      propertyPath: battleManager
+      value: 
+      objectReference: {fileID: 265364124}
     - target: {fileID: 1329236734, guid: c9816fa979b06ba4e9c222b529370cc2, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -8262,30 +8222,6 @@ PrefabInstance:
       propertyPath: camShake
       value: 
       objectReference: {fileID: 510672769}
-    - target: {fileID: 1402698100, guid: c9816fa979b06ba4e9c222b529370cc2, type: 3}
-      propertyPath: shakeDuration
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1402698100, guid: c9816fa979b06ba4e9c222b529370cc2, type: 3}
-      propertyPath: shakeAmplitude
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1402698100, guid: c9816fa979b06ba4e9c222b529370cc2, type: 3}
-      propertyPath: shakeFrequency
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1986996145, guid: c9816fa979b06ba4e9c222b529370cc2, type: 3}
-      propertyPath: amplitudeMAX
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1986996145, guid: c9816fa979b06ba4e9c222b529370cc2, type: 3}
-      propertyPath: frequencyMAX
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1986996145, guid: c9816fa979b06ba4e9c222b529370cc2, type: 3}
-      propertyPath: frequencyMIN
-      value: 0.4
-      objectReference: {fileID: 0}
     - target: {fileID: 2042151036, guid: c9816fa979b06ba4e9c222b529370cc2, type: 3}
       propertyPath: weaponDamage
       value: 
@@ -8296,6 +8232,12 @@ PrefabInstance:
       objectReference: {fileID: 192097567}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9816fa979b06ba4e9c222b529370cc2, type: 3}
+--- !u!4 &939497679 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 439242, guid: c9816fa979b06ba4e9c222b529370cc2,
+    type: 3}
+  m_PrefabInstance: {fileID: 939497678}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &956507845
 GameObject:
   m_ObjectHideFlags: 0
@@ -8466,6 +8408,12 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!1 &960588792 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1011661496849010258, guid: 60a383eef9158d149a5cf94f01ced88a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1011661495930545578}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &963743835
 GameObject:
   m_ObjectHideFlags: 0
@@ -8643,6 +8591,12 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1020125127 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9122081646508454268, guid: 1f0bca59891e2bf409e0efb86e87bd8b,
+    type: 3}
+  m_PrefabInstance: {fileID: 9122081645647818427}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1031692103
 GameObject:
   m_ObjectHideFlags: 0
@@ -9109,8 +9063,8 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 3
+  m_Color: {r: 0.94805855, g: 0.87602353, b: 0.9622642, a: 1}
+  m_Intensity: 2.3
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -9119,7 +9073,7 @@ Light:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 1
+    m_Strength: 0.7
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -17307,3 +17261,176 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &1011661495930545578
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 675732233}
+    m_Modifications:
+    - target: {fileID: 1011661496849010258, guid: 60a383eef9158d149a5cf94f01ced88a,
+        type: 3}
+      propertyPath: m_Name
+      value: Ultra-Violet Intruder
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011661496849010259, guid: 60a383eef9158d149a5cf94f01ced88a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011661496849010259, guid: 60a383eef9158d149a5cf94f01ced88a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011661496849010259, guid: 60a383eef9158d149a5cf94f01ced88a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011661496849010259, guid: 60a383eef9158d149a5cf94f01ced88a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.0713294
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011661496849010259, guid: 60a383eef9158d149a5cf94f01ced88a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.96115696
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011661496849010259, guid: 60a383eef9158d149a5cf94f01ced88a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.042945176
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011661496849010259, guid: 60a383eef9158d149a5cf94f01ced88a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.26314473
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011661496849010259, guid: 60a383eef9158d149a5cf94f01ced88a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011661496849010259, guid: 60a383eef9158d149a5cf94f01ced88a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 2.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011661496849010259, guid: 60a383eef9158d149a5cf94f01ced88a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -149.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011661496849010259, guid: 60a383eef9158d149a5cf94f01ced88a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 9.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011661496849010259, guid: 60a383eef9158d149a5cf94f01ced88a,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011661496849010259, guid: 60a383eef9158d149a5cf94f01ced88a,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011661496849010259, guid: 60a383eef9158d149a5cf94f01ced88a,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 60a383eef9158d149a5cf94f01ced88a, type: 3}
+--- !u!1001 &9122081645647818427
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 939497679}
+    m_Modifications:
+    - target: {fileID: 1197300281512619940, guid: 1f0bca59891e2bf409e0efb86e87bd8b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9122081646508454259, guid: 1f0bca59891e2bf409e0efb86e87bd8b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.7299986
+      objectReference: {fileID: 0}
+    - target: {fileID: 9122081646508454259, guid: 1f0bca59891e2bf409e0efb86e87bd8b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.19999981
+      objectReference: {fileID: 0}
+    - target: {fileID: 9122081646508454259, guid: 1f0bca59891e2bf409e0efb86e87bd8b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.1099986
+      objectReference: {fileID: 0}
+    - target: {fileID: 9122081646508454259, guid: 1f0bca59891e2bf409e0efb86e87bd8b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.050697654
+      objectReference: {fileID: 0}
+    - target: {fileID: 9122081646508454259, guid: 1f0bca59891e2bf409e0efb86e87bd8b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.8878089
+      objectReference: {fileID: 0}
+    - target: {fileID: 9122081646508454259, guid: 1f0bca59891e2bf409e0efb86e87bd8b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.07388261
+      objectReference: {fileID: 0}
+    - target: {fileID: 9122081646508454259, guid: 1f0bca59891e2bf409e0efb86e87bd8b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.451405
+      objectReference: {fileID: 0}
+    - target: {fileID: 9122081646508454259, guid: 1f0bca59891e2bf409e0efb86e87bd8b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9122081646508454259, guid: 1f0bca59891e2bf409e0efb86e87bd8b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 4.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 9122081646508454259, guid: 1f0bca59891e2bf409e0efb86e87bd8b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 125.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 9122081646508454259, guid: 1f0bca59891e2bf409e0efb86e87bd8b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -9.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 9122081646508454259, guid: 1f0bca59891e2bf409e0efb86e87bd8b,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9122081646508454259, guid: 1f0bca59891e2bf409e0efb86e87bd8b,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9122081646508454259, guid: 1f0bca59891e2bf409e0efb86e87bd8b,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9122081646508454268, guid: 1f0bca59891e2bf409e0efb86e87bd8b,
+        type: 3}
+      propertyPath: m_Name
+      value: Camo Jet
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1f0bca59891e2bf409e0efb86e87bd8b, type: 3}

@@ -1,114 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &104378
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 430564}
-  - component: {fileID: 3392724}
-  - component: {fileID: 2393866}
-  - component: {fileID: 1141020974}
-  - component: {fileID: 1141020973}
-  m_Layer: 8
-  m_Name: Model
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &430564
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 104378}
-  m_LocalRotation: {x: -0.3562966, y: -0.5642083, z: 0.68443936, w: -0.29370826}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 439242}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 101, y: -235, z: 0}
---- !u!33 &3392724
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 104378}
-  m_Mesh: {fileID: 4300000, guid: 4b440f170e81bec4aa725fdc02ca4c42, type: 3}
---- !u!23 &2393866
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 104378}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 68e184edba8a6504cac0432fd43b5d1e, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &1141020974
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 104378}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 4b440f170e81bec4aa725fdc02ca4c42, type: 3}
---- !u!114 &1141020973
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 104378}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e751dc6a69f1ca43bae78b085856e22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &110440
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,7 +30,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
-  - {fileID: 430564}
   - {fileID: 2042151035}
   - {fileID: 1189587296}
   - {fileID: 5305254426280056786}
@@ -168,8 +58,17 @@ MonoBehaviour:
   weapons:
   - {fileID: 2042151036}
   - {fileID: 1189587297}
+  camShake: {fileID: 0}
+  hitShakeDuration: 0.3
+  hitShakeAmplitude: 1.2
+  hitShakeFrequency: 2
+  deathShakeDuration: 0.35
+  deathShakeAmplitude: 1.6
+  deathShakeFrequency: 3
   isShipDead: 0
-  shipModel: {fileID: 104378}
+  deathParticles: {fileID: 9167902754206861732, guid: 6145c6d10b2c20947bb32533549fa30a,
+    type: 3}
+  shipModel: {fileID: 0}
   shipHUD: {fileID: 1907576329}
   shipUI: {fileID: 0}
   battleManager: {fileID: 0}
@@ -202,10 +101,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   degreesPerSecond: 15
-  amplitudeMAX: 1
+  amplitudeMAX: 0.7
   amplitudeMIN: 0.1
-  frequencyMAX: 1
-  frequencyMIN: 0.5
+  frequencyMAX: 0.7
+  frequencyMIN: 0.4
 --- !u!1 &194535481
 GameObject:
   m_ObjectHideFlags: 0
@@ -835,7 +734,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 439242}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1189587297
 MonoBehaviour:
@@ -1268,7 +1167,7 @@ RectTransform:
   - {fileID: 1235085182}
   - {fileID: 1991557753}
   m_Father: {fileID: 439242}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1516,7 +1415,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 439242}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2042151036
 MonoBehaviour:
@@ -1641,7 +1540,7 @@ Transform:
   m_Children:
   - {fileID: 7176092856352919478}
   m_Father: {fileID: 439242}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1402698100
 MonoBehaviour:
@@ -1657,6 +1556,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shieldHealth: {fileID: 0}
   shield: {fileID: 6816096803811821402}
+  shakeDuration: 0.2
+  shakeAmplitude: 1
+  shakeFrequency: 1.5
+  camShake: {fileID: 0}
   shipUI: {fileID: 1907576331}
 --- !u!1 &6816096803811821402
 GameObject:
@@ -1687,7 +1590,7 @@ Transform:
   m_GameObject: {fileID: 6816096803811821402}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 20, y: 20, z: 20}
+  m_LocalScale: {x: 16, y: 16, z: 16}
   m_Children: []
   m_Father: {fileID: 5305254426280056786}
   m_RootOrder: 0
