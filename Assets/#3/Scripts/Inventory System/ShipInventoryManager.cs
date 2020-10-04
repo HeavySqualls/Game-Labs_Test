@@ -165,7 +165,7 @@ public class ShipInventoryManager : MonoBehaviour
                 statPanel.UpdateStatValues();
             }
 
-            _item.Equip(this);
+            //_item.Equip(this);
             statPanel.UpdateStatValues();
 
             Debug.Log("Added " + _item.name);
@@ -179,7 +179,7 @@ public class ShipInventoryManager : MonoBehaviour
     public void Unequip(sEquipment _item)
     {
         equipmentPanel.RemoveItem(_item);
-        _item.Unequip(this);
+        //_item.Unequip(this);
         statPanel.UpdateStatValues();
     }
 }

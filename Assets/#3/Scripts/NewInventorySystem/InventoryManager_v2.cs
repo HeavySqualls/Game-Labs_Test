@@ -1,17 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Kryz.CharacterStats;
 
 public class InventoryManager_v2 : MonoBehaviour
 {
+    public CharacterStat HP;
+    public CharacterStat Shield;
+    public CharacterStat ShieldRegen;
+    public CharacterStat ReloadSpeed;
+
+    public CharacterStat GunA_Damage;
+    public CharacterStat GunA_Reload;
+
+    public CharacterStat GunB_Damage;
+    public CharacterStat GunB_Reload;
+
     [SerializeField] Inventory_v2 inventory;
     [SerializeField] EquipmentPanel_v2 equipmentPanel;
+    [SerializeField] StatPanel statPanel;
 
     private void Awake()
     {
+        statPanel.SetStats(HP, Shield, ShieldRegen, GunA_Damage, GunA_Reload, GunB_Damage, GunB_Reload);
+        statPanel.UpdateStatValues();
+
         //SUBCSCRIBE TO EVENTS
 
-            // If the event signal comes from the inventory, equip the item
+        // If the event signal comes from the inventory, equip the item
         inventory.OnItemRightClickedEvent += EquipFromInventory;
 
             // If the event signal comes from the Equipment Panel, unequip the item
@@ -49,7 +65,11 @@ public class InventoryManager_v2 : MonoBehaviour
                 {
                     // ...add that item back to the inventory
                     inventory.AddItem(previousItem);
+                    previousItem.Unequip(this);
+                    statPanel.UpdateStatValues();
                 }
+                item.Equip(this);
+                statPanel.UpdateStatValues();
             }
             // if we could not equip the current item, return it to the inventory as well 
             else
@@ -66,6 +86,8 @@ public class InventoryManager_v2 : MonoBehaviour
         {
             // ...and add it to the inventory
             inventory.AddItem(item);
+            item.Unequip(this);
+            statPanel.UpdateStatValues();
         }
     }
 }
