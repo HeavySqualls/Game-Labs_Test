@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Kryz.CharacterStats;
 
-public enum EquipmentType
+public enum EquipmentType // defines what type of item this item is 
 {
     Module, 
     Weapon,
