@@ -1,28 +1,61 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class EquipmentPanel_v2 : MonoBehaviour
 {
     [SerializeField] Transform equipmentSlotsParent;
-    [SerializeField] EquipmentSlot[] equipmentSlots;
+    [SerializeField] EquipmentSlot_v2[] equipmentSlots;
+
+    public event Action<sItem> OnItemRightClickedEvent; // sets up an equipment panel event, similar to the slot event 
+
+    private void Awake()
+    {
+        for (int i = 0; i < equipmentSlots.Length; i++)
+        {
+            // Adds a listener to the slots' OnRightClickEvent to subscribe to the equipment panels OnItemRightClickedEvent 
+            equipmentSlots[i].OnRightClickEvent += OnItemRightClickedEvent;
+        }
+    }
 
     private void OnValidate()
     {
         if (equipmentSlotsParent != null)
         {
-            equipmentSlots = equipmentSlotsParent.GetComponentsInChildren<EquipmentSlot>();
+            equipmentSlots = equipmentSlotsParent.GetComponentsInChildren<EquipmentSlot_v2>();
         }
     }
 
-    //public bool AddItem(sEquipment item)
-    //{
-    //    for (int i = 0; i < equipmentSlots.Length; i++) // loop through all the equipment slots 
-    //    {
-    //        if (equipmentSlots[i].equipmentType == item.equipmentType) // if the slot type is the same as the equipment type we are trying to equip
-    //        {
-    //            equipmentSlots[i].item = item;
-    //        }
-    //    }
-    //}
+    //TODO: Add Item is where I need to come up with a way that checks, if the first equip type slot is full, check for another empty one, 
+    //     and if there are no others, then replace the first one. 
+
+    // in the case that there is an item already equipped in the slot, we provide an "out" parameter to pass off the old equipment piece
+    public bool AddItem(sEquipment item, out sEquipment previousItem) 
+    {
+        for (int i = 0; i < equipmentSlots.Length; i++) // loop through all the equipment slots 
+        {
+            if (equipmentSlots[i].equipmentType == item.equipmentType) // when we find a slot that is the same as the equipment type we are trying to equip
+            {
+                previousItem = (sEquipment)equipmentSlots[i].Item;
+                equipmentSlots[i].Item = item; // add the item to that slot, and return true
+                return true;
+            }
+        }
+
+        previousItem = null;
+        return false; // else, return false. This item can not be added to any equipment slots
+    }
+
+    public bool RemoveItem(sEquipment item)
+    {
+        for (int i = 0; i < equipmentSlots.Length; i++) // loop through all the equipment slots 
+        {
+            if (equipmentSlots[i].Item == item) // look for the item, instead of the equipment type
+            {
+                equipmentSlots[i].Item = null; // assign null to the slot, removing the item
+                return true;
+            }
+        }
+        return false; // else, return false. This item can not be added to any equipment slots
+    }
 }

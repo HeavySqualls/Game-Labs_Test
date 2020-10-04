@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +7,17 @@ public class Inventory_v2 : MonoBehaviour
     [SerializeField] List<sItem> items;
     [SerializeField] Transform itemsParent;
     [SerializeField] ItemSlot_v2[] itemSlots;
+
+    public event Action<sItem> OnItemRightClickedEvent; // sets up an inventory event, similar to the slot event 
+
+    private void Awake()
+    {
+        for (int i = 0; i < itemSlots.Length; i++)
+        {
+            // Adds a listener to the slots' OnRightClickEvent to subscribe to the inventory's OnItemRightClickedEvent 
+            itemSlots[i].OnRightClickEvent += OnItemRightClickedEvent;  
+        }
+    }
 
     private void OnValidate()
     {

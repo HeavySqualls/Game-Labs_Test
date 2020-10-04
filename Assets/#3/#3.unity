@@ -170,10 +170,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6765518}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f593f8e7a7681e48bc8adf8dcba847e, type: 3}
+  m_Script: {fileID: 11500000, guid: 64b77cb5c6f71a2428c3aad2f8702b77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemImage: {fileID: 6765521}
+  image: {fileID: 6765521}
   equipmentType: 0
 --- !u!114 &6765521
 MonoBehaviour:
@@ -11512,6 +11512,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 941499189}
+  - component: {fileID: 941499190}
   m_Layer: 5
   m_Name: Character Panel
   m_TagString: Untagged
@@ -11537,9 +11538,23 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -211.25, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &941499190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 941499188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c3eb3b53c880ad4eae7476f0592aea1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 1616655973}
+  equipmentPanel: {fileID: 1377475837}
 --- !u!1 &949576423
 GameObject:
   m_ObjectHideFlags: 0
@@ -19076,10 +19091,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1523830394}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f593f8e7a7681e48bc8adf8dcba847e, type: 3}
+  m_Script: {fileID: 11500000, guid: 64b77cb5c6f71a2428c3aad2f8702b77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemImage: {fileID: 1523830397}
+  image: {fileID: 1523830397}
   equipmentType: 1
 --- !u!114 &1523830397
 MonoBehaviour:
@@ -21674,10 +21689,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1765127833}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f593f8e7a7681e48bc8adf8dcba847e, type: 3}
+  m_Script: {fileID: 11500000, guid: 64b77cb5c6f71a2428c3aad2f8702b77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemImage: {fileID: 1765127836}
+  image: {fileID: 1765127836}
   equipmentType: 0
 --- !u!114 &1765127836
 MonoBehaviour:
@@ -24081,10 +24096,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1925546591}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f593f8e7a7681e48bc8adf8dcba847e, type: 3}
+  m_Script: {fileID: 11500000, guid: 64b77cb5c6f71a2428c3aad2f8702b77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemImage: {fileID: 1925546594}
+  image: {fileID: 1925546594}
   equipmentType: 1
 --- !u!114 &1925546594
 MonoBehaviour:
