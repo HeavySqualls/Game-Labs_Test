@@ -3,11 +3,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class ItemSlot_v2 : MonoBehaviour, IPointerClickHandler
+public class ItemSlot_v2 : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public event Action <sItem> OnRightClickEvent; // This event recieves an sItem as its input parameter
 
     [SerializeField] Image image;
+    [SerializeField] ItemTooltip tooltip;
 
     private sItem _item;
     public sItem Item // making the item a property 
@@ -38,6 +39,11 @@ public class ItemSlot_v2 : MonoBehaviour, IPointerClickHandler
         {
             image = GetComponent<Image>();
         }
+
+        if (tooltip == null)
+        {
+            tooltip = FindObjectOfType<ItemTooltip>(); // Since this only runs in the editor, it is ok for it to happen here as its of no s
+        }
     }
 
     public virtual bool CanRecieveItem(sItem item)
@@ -55,5 +61,20 @@ public class ItemSlot_v2 : MonoBehaviour, IPointerClickHandler
                 OnRightClickEvent(Item); // Setting the item from this slot as the event input parameter
             }
         }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        // Need to check if the item is of an equippable item type, if it isn't we will need to figure out 
+        // a way to handle that case
+        if (Item is sEquipment)
+        {
+            tooltip.ShowTooltip((sEquipment)Item);
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        tooltip.HideTooltip();
     }
 }
