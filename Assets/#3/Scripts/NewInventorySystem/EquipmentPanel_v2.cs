@@ -7,14 +7,26 @@ public class EquipmentPanel_v2 : MonoBehaviour
     [SerializeField] Transform equipmentSlotsParent;
     [SerializeField] EquipmentSlot_v2[] equipmentSlots;
 
-    public event Action<sItem> OnItemRightClickedEvent; // sets up an equipment panel event, similar to the slot event 
+    public event Action<ItemSlot_v2> OnPointerEnterEvent;
+    public event Action<ItemSlot_v2> OnPointerExitEvent;
+    public event Action<ItemSlot_v2> OnRightClickEvent;
+    public event Action<ItemSlot_v2> OnBeginDragEvent;
+    public event Action<ItemSlot_v2> OnEndDragEvent;
+    public event Action<ItemSlot_v2> OnDragEvent;
+    public event Action<ItemSlot_v2> OnDropEvent;
 
-    private void Awake()
+    private void Start()
     {
         for (int i = 0; i < equipmentSlots.Length; i++)
         {
             // Adds a listener to the slots' OnRightClickEvent to subscribe to the equipment panels OnItemRightClickedEvent 
-            equipmentSlots[i].OnRightClickEvent += OnItemRightClickedEvent;
+            equipmentSlots[i].OnPointerEnterEvent += OnPointerEnterEvent;
+            equipmentSlots[i].OnPointerExitEvent += OnPointerExitEvent;
+            equipmentSlots[i].OnRightClickEvent += OnRightClickEvent;
+            equipmentSlots[i].OnBeginDragEvent += OnBeginDragEvent;
+            equipmentSlots[i].OnEndDragEvent += OnEndDragEvent;
+            equipmentSlots[i].OnDragEvent += OnDragEvent;
+            equipmentSlots[i].OnDropEvent += OnDropEvent;
         }
     }
 
