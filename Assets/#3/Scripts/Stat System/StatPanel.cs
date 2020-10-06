@@ -37,6 +37,7 @@ public class StatPanel : MonoBehaviour
 
     public void UpdateStatValues()
     {
+        Debug.Log("Stat values updated");
         for (int i = 0; i < stats.Length; i++)
         {
             statDisplays[i].UpdateStatValue();

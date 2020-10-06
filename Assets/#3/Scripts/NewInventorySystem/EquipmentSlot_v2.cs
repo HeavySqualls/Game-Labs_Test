@@ -17,7 +17,7 @@ public class EquipmentSlot_v2 : ItemSlot_v2
     public override bool CanRecieveItem(sItem item)
     {
         // if the slot is empty, then we can recieve the item 
-        if (item == null)
+        if (this.Item == null)
         {
             return true;
         }

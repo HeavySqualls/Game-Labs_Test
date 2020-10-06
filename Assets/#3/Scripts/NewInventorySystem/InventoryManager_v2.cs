@@ -16,7 +16,7 @@ public class InventoryManager_v2 : MonoBehaviour
     public CharacterStat GunB_Reload;
 
     [SerializeField] Inventory_v2 inventory;
-    [SerializeField] EquipmentPanel_v2 equipmentPanel;
+    public EquipmentPanel_v2 equipmentPanel;
     [SerializeField] StatPanel statPanel;
     [SerializeField] ItemTooltip itemTooltip;
 
@@ -130,6 +130,8 @@ public class InventoryManager_v2 : MonoBehaviour
         // before attempting to drop the item, make sure that the slot from the item where we are dropping the
         // item can recieve the slot that started the drag, and check that the slot that started the drag can recieve 
         // the item at where we are dropping it (make sure they can make an exchange)
+        if (draggedSlot == null) return;
+
         if (dropItemSlot.CanRecieveItem(draggedSlot.Item) && draggedSlot.CanRecieveItem(dropItemSlot.Item))
         {
             sEquipment dragItem = draggedSlot.Item as sEquipment;
@@ -138,13 +140,13 @@ public class InventoryManager_v2 : MonoBehaviour
             if (draggedSlot is EquipmentSlot_v2)
             {
                 Debug.Log("Equipping " + dropItem.name);
-                if (dragItem != null) Unequip(dragItem);//dragItem.Unequip(this);
-                if (dropItem != null) Equip(dropItem);//dropItem.Equip(this);
+                if (dragItem != null) Unequip(dragItem);
+                if (dropItem != null) Equip(dropItem);
             }
             if (dropItemSlot is EquipmentSlot_v2)
             {
-                if (dragItem != null) Equip(dragItem);//dragItem.Equip(this);
-                if (dropItem != null) Unequip(dragItem);// dropItem.Unequip(this);
+                if (dragItem != null) Equip(dragItem);
+                if (dropItem != null) Unequip(dragItem);
             }
 
             statPanel.UpdateStatValues();

@@ -43,27 +43,27 @@ public class sEquipment : sItem
             s.GunB_Reload.AddModifier(new StatModifier(WeaponReloadBonus, StatModType.PercentMult, this));
         }
 
-        if (damage != 0)
-        {
-            s.GunA_Damage.AddModifier(new StatModifier(damage, StatModType.Flat, this));
-            s.GunA_Reload.AddModifier(new StatModifier(reloadTime, StatModType.Flat, this));
-        }
-
-        //TODO: Set up for use with multiple weapons as in old version
-
         //if (damage != 0)
         //{
-        //    if (s.equipmentPanel.currentWeaponEquipSlot == 0) 
-        //    {
-        //        s.GunA_Damage.AddModifier(new StatModifier(damage, StatModType.Flat, this));
-        //        s.GunA_Reload.AddModifier(new StatModifier(reloadTime, StatModType.Flat, this));
-        //    }
-        //    else if (s.equipmentPanel.currentWeaponEquipSlot == 1)
-        //    {
-        //        s.GunB_Damage.AddModifier(new StatModifier(damage, StatModType.Flat, this));
-        //        s.GunB_Reload.AddModifier(new StatModifier(reloadTime, StatModType.Flat, this));
-        //    }
+        //    s.GunA_Damage.AddModifier(new StatModifier(damage, StatModType.Flat, this));
+        //    s.GunA_Reload.AddModifier(new StatModifier(reloadTime, StatModType.Flat, this));
         //}
+
+        // Tracking the last used weapon slot
+
+        if (damage != 0)
+        {
+            if (s.equipmentPanel.currentWeaponSlot == 0)
+            {
+                s.GunA_Damage.AddModifier(new StatModifier(damage, StatModType.Flat, this));
+                s.GunA_Reload.AddModifier(new StatModifier(reloadTime, StatModType.Flat, this));
+            }
+            else if (s.equipmentPanel.currentWeaponSlot == 1)
+            {
+                s.GunB_Damage.AddModifier(new StatModifier(damage, StatModType.Flat, this));
+                s.GunB_Reload.AddModifier(new StatModifier(reloadTime, StatModType.Flat, this));
+            }
+        }
     }
 
     public void Unequip(InventoryManager_v2 s)
@@ -75,25 +75,25 @@ public class sEquipment : sItem
         //s.ShieldRegen.RemoveModifier(new StatModifier(ShieldRegenBonus, StatModType.PercentMult, this));
         s.ShieldRegen.RemoveAllModifiersFromSource(this);
         //s.GunA_Damage.RemoveModifier(new StatModifier(damage, StatModType.Flat, this));
-        s.GunA_Damage.RemoveAllModifiersFromSource(this);
+        //s.GunA_Damage.RemoveAllModifiersFromSource(this);
         //s.GunA_Reload.RemoveModifier(new StatModifier(WeaponReloadBonus, StatModType.Flat, this));
-        s.GunA_Reload.RemoveAllModifiersFromSource(this);
+       // s.GunA_Reload.RemoveAllModifiersFromSource(this);
 
         //TODO: Set up for use with multiple weapons as in old version
 
-        //if (s.equipmentPanel.currentWeaponEquipSlot == 0)
-        //{
-        //    //s.GunA_Damage.RemoveModifier(new StatModifier(damage, StatModType.Flat, this));
-        //    s.GunA_Damage.RemoveAllModifiersFromSource(this);
-        //    //s.GunA_Reload.RemoveModifier(new StatModifier(WeaponReloadBonus, StatModType.Flat, this));
-        //    s.GunA_Reload.RemoveAllModifiersFromSource(this);
-        //}
-        //else if (s.equipmentPanel.currentWeaponEquipSlot == 1)
-        //{
-        //    //s.GunB_Damage.RemoveModifier(new StatModifier(damage, StatModType.Flat, this));
-        //    s.GunB_Damage.RemoveAllModifiersFromSource(this);
-        //    //s.GunB_Reload.RemoveModifier(new StatModifier(WeaponReloadBonus, StatModType.Flat, this));
-        //    s.GunB_Reload.RemoveAllModifiersFromSource(this);
-        //}
+        if (s.equipmentPanel.currentWeaponSlot == 0)
+        {
+            //s.GunA_Damage.RemoveModifier(new StatModifier(damage, StatModType.Flat, this));
+            s.GunA_Damage.RemoveAllModifiersFromSource(this);
+            //s.GunA_Reload.RemoveModifier(new StatModifier(WeaponReloadBonus, StatModType.Flat, this));
+            s.GunA_Reload.RemoveAllModifiersFromSource(this);
+        }
+        else if (s.equipmentPanel.currentWeaponSlot == 1)
+        {
+            //s.GunB_Damage.RemoveModifier(new StatModifier(damage, StatModType.Flat, this));
+            s.GunB_Damage.RemoveAllModifiersFromSource(this);
+            //s.GunB_Reload.RemoveModifier(new StatModifier(WeaponReloadBonus, StatModType.Flat, this));
+            s.GunB_Reload.RemoveAllModifiersFromSource(this);
+        }
     }
 }

@@ -15,6 +15,9 @@ public class EquipmentPanel_v2 : MonoBehaviour
     public event Action<ItemSlot_v2> OnDragEvent;
     public event Action<ItemSlot_v2> OnDropEvent;
 
+    public int currentWeaponSlot;
+    public int currentModuleSlot;
+
     private void Start()
     {
         for (int i = 0; i < equipmentSlots.Length; i++)
@@ -38,19 +41,40 @@ public class EquipmentPanel_v2 : MonoBehaviour
         }
     }
 
-    //TODO: Add Item is where I need to come up with a way that checks, if the first equip type slot is full, check for another empty one, 
-    //     and if there are no others, then replace the first one. 
+    // TRACKS THE CURRENT WEAPON AND MODULE SLOTS TO PERFORM ACTIONS ONLY TO THOSE SLOTS 
 
     // in the case that there is an item already equipped in the slot, we provide an "out" parameter to pass off the old equipment piece
     public bool AddItem(sEquipment item, out sEquipment previousItem) 
     {
-        for (int i = 0; i < equipmentSlots.Length; i++) // loop through all the equipment slots 
+        // Module Slots 
+        if (item.equipmentType == EquipmentType.Module)
         {
-            if (equipmentSlots[i].equipmentType == item.equipmentType) // when we find a slot that is the same as the equipment type we are trying to equip
+            for (int i = 0; i < equipmentSlots.Length; i++)
             {
-                previousItem = (sEquipment)equipmentSlots[i].Item;
-                equipmentSlots[i].Item = item; // add the item to that slot, and return true
-                return true;
+                if (equipmentSlots[i].equipmentType == item.equipmentType && equipmentSlots[i].Item == null)
+                {
+                    currentModuleSlot = i;
+                    print("CURRENT MODULE SLOT: " + i);
+                    previousItem = (sEquipment)equipmentSlots[i].Item;
+                    equipmentSlots[i].Item = item;
+                    return true;
+                }
+            }
+        }
+
+        // Weapon Slots 
+        else if (item.equipmentType == EquipmentType.Weapon)
+        {
+            for (int i = 0; i < equipmentSlots.Length; i++)
+            {
+                if (equipmentSlots[i].equipmentType == item.equipmentType && equipmentSlots[i].Item == null)
+                {
+                    currentWeaponSlot = i;
+                    print("CURRENT WEAPON SLOT: " + i);
+                    previousItem = (sEquipment)equipmentSlots[i].Item;
+                    equipmentSlots[i].Item = item;
+                    return true;
+                }
             }
         }
 
@@ -60,14 +84,35 @@ public class EquipmentPanel_v2 : MonoBehaviour
 
     public bool RemoveItem(sEquipment item)
     {
-        for (int i = 0; i < equipmentSlots.Length; i++) // loop through all the equipment slots 
+        //Module Slots 
+        if (item.equipmentType == EquipmentType.Module)
         {
-            if (equipmentSlots[i].Item == item) // look for the item, instead of the equipment type
+            for (int i = 0; i < equipmentSlots.Length; i++) // loop through all the equipment slots 
             {
-                equipmentSlots[i].Item = null; // assign null to the slot, removing the item
-                return true;
+                if (equipmentSlots[i].Item == item) // look for the item, instead of the equipment type
+                {
+                    currentWeaponSlot = i;
+                    print("CURRENT MODULE SLOT: " + i);
+                    equipmentSlots[i].Item = null; // assign null to the slot, removing the item
+                    return true;
+                }
             }
         }
+        // Weapons
+        else if (item.equipmentType == EquipmentType.Weapon)
+        {
+            for (int i = 0; i < equipmentSlots.Length; i++) // loop through all the equipment slots 
+            {
+                if (equipmentSlots[i].Item == item) // look for the item, instead of the equipment type
+                {
+                    currentWeaponSlot = i;
+                    print("CURRENT WEAPON SLOT: " + i);
+                    equipmentSlots[i].Item = null; // assign null to the slot, removing the item
+                    return true;
+                }
+            }
+        }
+
         return false; // else, return false. This item can not be added to any equipment slots
     }
 }

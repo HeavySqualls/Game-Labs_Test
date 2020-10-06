@@ -51,7 +51,7 @@ public class Inventory_v2 : MonoBehaviour
         int i = 0;
         for (; i < startingItems.Count && i < itemSlots.Length; i++) // for every item we have, we'll assign it to an item slot
         {
-            itemSlots[i].Item = startingItems[i];
+            itemSlots[i].Item = Instantiate(startingItems[i]);
         }
 
         for (; i < itemSlots.Length; i++) // for every spot that does not have an item, set it to null
